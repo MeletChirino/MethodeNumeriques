@@ -1,0 +1,94 @@
+//Par Melet Chirino 26-Fev
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+#define T 20
+
+void linspace(float y[DIM], int a, int b, float eps, int *n);
+void voirTabla(float vect[DIM], int n);
+double f(float R);
+double df(float R);
+float newton(double depart);
+double e(float number);
+
+int main()
+{
+
+	double R;
+
+	printf("Saissir R = \n");
+	scanf("%lf", &R);
+
+	printf("\nf(R) = %lf", f(R));
+	printf("\ndf(R) = %lf", df(R));
+
+	printf("\nEl resultado es %f", newton(R));
+	printf("\n");
+	return 0;
+}
+
+
+float newton(double depart){
+	double x1 = depart, x2 = depart, eps;
+	int trys = 0;
+
+	printf("Saissir la precision desire\n");
+	scanf("%lf", &eps);
+	do{
+		x1 = x2;
+		printf("\n f(x) = %lf\n", f(x1));
+		printf("\n df(x) = %lf\n", df(x1));
+		x2 = x1 - f(x1)/df(x1);
+		printf("\n x2 = %lf\n eps actual = %lf", x2, sqrt(pow(x2 - x1,2)));
+		trys += 1;
+	}while(abs(x2 - x1) > eps || trys > 1000);
+
+	return x2;
+}
+
+
+double df(float R){
+	// derivada de la funcion f
+	return (2.34 * e(-4) + ( 8.78 * e(-8) * (3 * log(R)*log(R) )) / R);
+}
+
+double f(float R){
+	// funcion que da el resultado de la ecuacion que buscamos
+	return 1.29*e(-3) + (2.34 * e(-4) * log(R)) + (8.78 * e(-8) * (log(R)*log(R)*log(R))) - (1/(T + 273));
+}
+
+double e(float number){
+	// funcion de apoyo para las potencias de 10
+	return pow(10, number);
+}
+
+void voirTabla(float vect[DIM], int n)
+{
+	int i;
+
+	for(i = 0; i < n; i++)
+	{
+		printf("%f\n", vect[i]);
+	}
+	printf("\n");
+}
+
+void linspace(float y[DIM], int a, int b, float eps, int *n)
+{
+	int i = 0;
+
+	while( b > (i * eps + a) && DIM >= i)
+	{
+		i++;
+	}
+
+	*n = i;
+
+	printf("n = %d\n", *n);
+
+	for(i=0; i < *n; i++)
+	{
+		y[i] = a + eps * (i+1);
+	}
+}
