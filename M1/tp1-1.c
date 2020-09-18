@@ -24,21 +24,22 @@ int main(){
 	delta = b*b -4*a*c;
 
 	//Show roots
-	if(delta>=0){
+	if(delta == 0){
+
+		root[1] = (-b)/(2*a);
+		printf("La solution pour l'equation est:\nX = %f",
+			root[1]
+			);
+
+	} else if(delta>=0) {
 		root[0] = (-b + sqrt(delta))/(2*a);
 		root[1] = (-b - sqrt(delta))/(2*a);
 
-		if(root[0] != root[1]){
-				printf("Les solutions pour l'equation sont:\nX1 = %f\nX2 = %f\n", 
-					root[0],
-					root[1]
-					);
-		} else {
-				printf("La solution pour l'equation est:\nX = %f",
-					root[1]
-					);
-		}
-		
+		printf("Les solutions pour l'equation sont:\nX1 = %f\nX2 = %f\n", 
+			root[0],
+			root[1]
+			);
+
 	 } else {
 		float iroot[2];
 
