@@ -10,11 +10,17 @@ float min(float *nombres, int n);
 float max(float *nombres, int n);
 
 int main(){
-	int n = 5;
-	float nombres[]={5,7,6,9,0}, a;
-	a = max(nombres,n);
-	printf("%f",a);
+	int n = 0;
+	float nombres[N];
 
+	do{
+			printf("Saisir la %d valeur", n+1);
+			scanf("%f", &nombres[n]);
+			n+=1;
+	}while(nombres[n-1] != -1);
+	n -= 1;
+
+	printf("il y a %d valeurs\n", n);
 
 	return 0;
 }
