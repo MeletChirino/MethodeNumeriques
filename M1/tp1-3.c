@@ -10,18 +10,16 @@ float min(float *nombres, int n);
 float max(float *nombres, int n);
 
 int main(){
-	int n = 0;
-	float nombres[N];
+	int n = 30, i;
+	float nombres[N], dat;
 
-	do{
-			printf("Saisir la %d valeur", n+1);
-			scanf("%f", &nombres[n]);
-			n+=1;
-	}while(nombres[n-1] != -1);
-	n -= 1;
-
-	printf("il y a %d valeurs\n", n);
-
+	FILE *file;
+	file = fopen("notes.dat","r");
+	for(i=0; i<n; i++){
+	fscanf(file,"%e", &dat);
+		printf("\n%f", dat);	
+	}
+	fclose(file);
 	return 0;
 }
 float somme(float *nombres, int n){
