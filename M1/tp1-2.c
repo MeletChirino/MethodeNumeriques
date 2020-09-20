@@ -87,8 +87,8 @@ void func_y(int a, int b, int c, float *x, float *y){
 		}
 }
 void show(float x[N], float y[N]){
-	int i;
-	printf("-----------------------------------\n");
-	for(i=0; i<N; i++) printf("|%2.3f\t\t\t|%2.1f\t\t\t|\n", x[i], y[i]);
-	printf("-----------------------------------\n");
+			int i;
+			printf("-----------------------------------\n");
+			for(i=0; i<N; i++) printf("|%2.3f\t\t\t|%2.1f\t\t\t|\n", x[i], y[i]);
+			printf("-----------------------------------\n");
 }
