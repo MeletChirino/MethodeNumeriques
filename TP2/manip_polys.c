@@ -8,28 +8,29 @@ int main(){
 	/* Loi des moindres carres
 	 * y a quelque chose qui va pas
 	 * */
-		int taille, i;
-		struct polynomes poly1;
+	int taille, i;
+	float valeur;
+	struct polynomes poly1 = create_poly();
 
-		printf("Saisir la taille du tableau\n");
-		scanf("%d", &taille);
-
-		poly1.degree = taille;
-		poly1.coeff = (float*)malloc(taille*sizeof(float));
-		//poly1.coeff = ptr;
-
-		for(i =0; i< taille+1; i++){
-			printf("\ncoeff[%d]",i);
-			scanf("%f", &poly1.coeff[i]);
-		}
-
-			printf("\n\n\n");
-
-		affichage_polynome(poly1);
-
-		printf("%f",poly_evalue(poly1, 2));
-
+	//for(i =0; i< poly1.degree+1; i++){
+//		printf("\ncoeff[%d] ",i);
+//		scanf("%f", &poly1.coeff[i]);
+//	}
+	coeff_poly(&poly1);
 
 		printf("\n\n\n");
+
+	affichage_polynome(poly1);
+
+	do{
+		printf("\nSaisisez un valeur a calculer avec le polynome trouve\n");
+		scanf("%f",&valeur);
+		printf("\ny(%0.2f) = %f",valeur, poly_evalue(poly1, valeur));
+		
+	}while(valeur != -1);
+
+
+	printf("\n\n");
+
 	return 0;
 }
