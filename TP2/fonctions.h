@@ -1,3 +1,27 @@
+struct polynomes{
+		int degree;
+		float *coeff;
+};
+float poly_evalue(struct polynomes poly1,float valeur){
+		int i;
+		float resultat = 0;
+		for(i = poly1.degree; i >= 0; i-=1){
+				resultat += poly1.coeff[i] * pow(valeur, i);
+		}
+		return resultat;
+}
+void affichage_polynome(struct polynomes poly1){
+		int i;
+
+		for(i = poly1.degree; i >= 0; i-=1){
+				if(i != 0)
+						printf("%0.2fx^%d + ", poly1.coeff[i], i);
+				else
+						printf("%0.2f",poly1.coeff[i]);
+		}
+
+}
+
 int lecture(float *X, float *Y){
 /* fonction pour lire une fichier avec des donees */
 		float x_, y_;
