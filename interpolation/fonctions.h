@@ -5,6 +5,38 @@ struct polynomes{
 
 float horner_deriv(struct polynomes poly, float value);
 
+double f(double x){
+	return 1/(1+25*x*x);
+}
+
+void calcul_fonction(int n, double *ech_x, double *ech_f){
+	int i;
+	for(i=0; i<n; i++){
+		ech_f[i] = f(ech_x[i]);
+	}	
+}
+
+
+void echantillon_reguliere(double min, double max, int n, double *echantillon){
+		double pas = (max - min) / (n);
+		int i;
+		//echantillon = (double*)malloc(n * sizeof(double));
+		echantillon[0] = (double)min + (pas / 2);
+
+		for(i = 1; i < n; i++){
+				*(echantillon + i) = *(echantillon +i -1) + pas;
+				printf("\nmin = %lf num = %lf", echantillon[i-1], echantillon[i]);
+		}
+}
+
+void show_array(double *array, int n){
+		int i;
+		for(i = 0; i < n; i++){
+				printf("\n tableau[%d] = %lf",i, array[i]);
+		}	
+
+}
+
 float horner(struct polynomes poly, float value){
 	float result = poly.coeff[poly.degree];
 	int i;
