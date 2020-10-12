@@ -16,6 +16,25 @@ void calcul_fonction(int n, double *ech_x, double *ech_f){
 	}	
 }
 
+void sauvegarde_fichier(char *courbe, double *abscisses, double *ordonnees, int n)
+{
+    int i;
+    double xi;
+    double yi;
+    FILE* fichier;
+    fichier = fopen(courbe,"w");
+
+    for(i=0; i <n; i++)
+    {
+      
+      fprintf(fichier,"%lf %lf \n",abscisses[i],ordonnees[i]);
+                            
+    }
+    
+               
+    fclose(fichier);             
+}
+
 
 void echantillon_reguliere(double min, double max, int n, double *echantillon){
 		double pas = (max - min) / (n);
