@@ -32,8 +32,10 @@ int main(){
 
 		calcul_polynome(n, x_values, y_values, poly1);
 		show_array(y_values, n);
+		
+		sauvegarde_fichier("courbe2.dat", x_values, y_values, n);
 
-
+        system("PAUSE");
 		return 0;
 }
 
