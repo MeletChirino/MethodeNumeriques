@@ -3,6 +3,16 @@ struct polynomes{
 		float *coeff;
 };
 
+
+double polynome_eval(double x, struct polynomes poly){
+	double result = poly.coeff[poly.degree];
+	int i;
+	for(i = poly.degree -1; i>=0; i--){
+			result = result * x + poly.coeff[i];
+	}
+	return result;
+}
+
 float horner_deriv(struct polynomes poly, float value);
 
 double f(double x){
@@ -142,7 +152,7 @@ struct polynomes deriver(struct polynomes poly){
 struct polynomes create_poly(){
 	int taille;
 	struct polynomes poly;
-	printf("Saisir la taille du Polynome\n");
+	printf("\nSaisir la taille du Polynome\n");
 	scanf("%d", &taille);
 
 	poly.degree = taille;
