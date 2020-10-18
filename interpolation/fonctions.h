@@ -2,7 +2,30 @@ struct polynomes{
 		int degree;
 		float *coeff;
 };
+/*
+int lecture(float *X, float *Y){
+	// fonction pour lire une fichier avec des donees`
+	float x_, y_;
+	FILE *file;
+	file = fopen("data.dat","r");
+	int taille = 0;
 
+	if(file == NULL){
+		printf("\nfile does not exist\n");
+		return 1;
+	}
+
+	while(fscanf(file,"%f %f", &x_, &y_) != EOF){//while not the end
+		X[taille] = x_;
+		Y[taille] = y_;
+		//printf("\n(%2.2f,\t%2.2f)", X[taille], Y[taille]);
+		taille++;
+	}
+
+	fclose(file);
+
+	return(taille);
+}*/
 
 double polynome_eval(double x, struct polynomes poly){
 	double result = poly.coeff[poly.degree];
