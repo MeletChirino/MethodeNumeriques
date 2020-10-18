@@ -58,7 +58,7 @@ void echantillon_reguliere(double min, double max, int n, double *echantillon){
 
 		for(i = 1; i < n; i++){
 				*(echantillon + i) = *(echantillon +i -1) + pas;
-				printf("\nmin = %lf num = %lf", echantillon[i-1], echantillon[i]);
+				//printf("\nmin = %lf num = %lf", echantillon[i-1], echantillon[i]);
 		}
 }
 
