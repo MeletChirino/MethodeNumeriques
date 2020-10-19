@@ -78,41 +78,6 @@ void AffichageGnuplot(structEchantillonnage_fonction Echantillonnage_fonction)
 	free(Abscisses_boxes);
 }
 
-void show_array(double *array, int n){
-		int i;
-		for(i = 0; i < n; i++)
-        {
-				printf("\n Ligne[%d] = %lf",i, array[i]);
-		}	
-
-}
-
-void LireQuadrature(structQuadrature* pQuadrature){
-	/* fonction pour lire une fichier avec des donnees */
-	int x_, y_;
-	int i, n;
-	
-	
-	FILE *file;
-	file = fopen("quadrature.txt","r");
-	fscanf(file,"%d", &n);
-	
-	pQuadrature->taille = n;
-	
-	pQuadrature->tabZeta = (double*)malloc(pQuadrature->taille*sizeof(double));
-    pQuadrature->tabOmega = (double*)malloc(pQuadrature->taille*sizeof(double));  
-
-	//while(fscanf(file,"%lf %lf", &x_, &y_) != EOF)
-    for(i=0; i<n; i++)
-    {
-        fscanf(file,"%d %d", &x_, &y_);    
-        printf("%d %d", x_, y_);
-		pQuadrature->tabZeta[i] = (double)x_;
-		pQuadrature->tabOmega[i] = (double)y_;
-	}
-
-	fclose(file);
-}
 
 // Fonction gÃ©nÃ©rique de sauvegarde de donnÃ©es pour le tracÃ© d'une courbe sur Gnuplot
 void SauvegardeCourbe(char * nom_fichier, double * Abscisses, double * Ordonnees, int n)
