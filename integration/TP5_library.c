@@ -16,14 +16,16 @@
 /* FONCTIONS DEJA CODEES DANS LA LIBRAIRIE : */
 
 
-double CalculFonction(double x) // On modifiera ici la fonction à intégrer
+double CalculFonction(double x) // On modifiera ici la fonction Ã  intÃ©grer
 {
 	double resultat;
 	resultat = exp(-x*x/2)/(sqrt(2*3.14159265358979));
 	return resultat;
 }
 
-// Fonction créant deux fichiers de données exploitables pour un tracé sur Gnuplot
+
+
+// Fonction crÃ©ant deux fichiers de donnÃ©es exploitables pour un tracÃ© sur Gnuplot
 void AffichageGnuplot(structEchantillonnage_fonction Echantillonnage_fonction)
 {
 	int n = (Echantillonnage_fonction.Subdivision_Echantillonnage).nombre;
@@ -76,7 +78,43 @@ void AffichageGnuplot(structEchantillonnage_fonction Echantillonnage_fonction)
 	free(Abscisses_boxes);
 }
 
-// Fonction générique de sauvegarde de données pour le tracé d'une courbe sur Gnuplot
+void show_array(double *array, int n){
+		int i;
+		for(i = 0; i < n; i++)
+        {
+				printf("\n Ligne[%d] = %lf",i, array[i]);
+		}	
+
+}
+
+void LireQuadrature(structQuadrature* pQuadrature){
+	/* fonction pour lire une fichier avec des donnees */
+	int x_, y_;
+	int i, n;
+	
+	
+	FILE *file;
+	file = fopen("quadrature.txt","r");
+	fscanf(file,"%d", &n);
+	
+	pQuadrature->taille = n;
+	
+	pQuadrature->tabZeta = (double*)malloc(pQuadrature->taille*sizeof(double));
+    pQuadrature->tabOmega = (double*)malloc(pQuadrature->taille*sizeof(double));  
+
+	//while(fscanf(file,"%lf %lf", &x_, &y_) != EOF)
+    for(i=0; i<n; i++)
+    {
+        fscanf(file,"%d %d", &x_, &y_);    
+        printf("%d %d", x_, y_);
+		pQuadrature->tabZeta[i] = (double)x_;
+		pQuadrature->tabOmega[i] = (double)y_;
+	}
+
+	fclose(file);
+}
+
+// Fonction gÃ©nÃ©rique de sauvegarde de donnÃ©es pour le tracÃ© d'une courbe sur Gnuplot
 void SauvegardeCourbe(char * nom_fichier, double * Abscisses, double * Ordonnees, int n)
 {
 	FILE* fichier = NULL;
