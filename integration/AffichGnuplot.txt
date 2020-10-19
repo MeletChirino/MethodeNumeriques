@@ -1,0 +1,2 @@
+plot [-3:3] [0:0.5] "courbe_integration_boxes.dat" with boxes fs solid, "courbe_ligne.dat" with line
+pause -1
