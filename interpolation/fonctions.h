@@ -3,7 +3,6 @@ struct polynomes{
 		float *coeff;
 };
 
-
 double polynome_eval(double x, struct polynomes poly){
 	double result = poly.coeff[poly.degree];
 	int i;
@@ -12,6 +11,53 @@ double polynome_eval(double x, struct polynomes poly){
 	}
 	return result;
 }
+
+void calcul_polynome(int n, double *ech_x, double *ech_y, struct polynomes poly){
+	int i;
+	for(i=0; i<n; i++){
+			ech_y[i] = polynome_eval(ech_x[i], poly);
+	}
+}
+
+double polynome_lagrange(int i, int n, double x, double *x_values){
+		int j;
+		double result = 1;
+
+		//printf("\n\nL_%d ---------------", i);
+		for(j=0; j< n; j++){
+			if(j != i){
+					result *= (x - x_values[j]) / (x_values[i] - x_values[j]); 
+			//printf("\n%lf = %lf - %d / %d - %d", result, x, j, i, j);
+			}
+		}
+
+		return result;
+}
+
+void calcul_polynome_lagrange(int n, double *x_values, double *y_values, double *Pm){
+		double L[n];
+		int i, j;
+		//Ahora calcula los Pm
+		for(i=0; i<n; i++){
+				//initializer le Pm pour le summatoire
+				Pm[i] = 0;
+				//printf("\n\nPm[%d] =", i);
+
+
+				for(j=0; j<n; j++){
+					//Le calcul des Li pour cet valeur
+					L[j] = polynome_lagrange(j, n, x_values[i], x_values);
+					
+					//printf("\nL_%d = %lf", j, L[j]); 
+
+					//cest la multiplication de Li*yi et il fait la 
+					//somme au fur et a mesure quil avance
+					Pm[i] += L[j]*y_values[j]; 
+					//printf("\n%lf += %lf * %lf ", Pm[i], L[j], y_values[j]);
+				}
+		}
+}
+
 
 float horner_deriv(struct polynomes poly, float value);
 
@@ -50,7 +96,7 @@ void echantillon_reguliere(double min, double max, int n, double *echantillon){
 
 		for(i = 1; i < n; i++){
 				*(echantillon + i) = *(echantillon +i -1) + pas;
-				printf("\nmin = %lf num = %lf", echantillon[i-1], echantillon[i]);
+				//printf("\nmin = %lf num = %lf", echantillon[i-1], echantillon[i]);
 		}
 }
 
