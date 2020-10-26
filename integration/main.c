@@ -10,39 +10,41 @@ void show_array(double *array, int n){
 		}	
 
 }
+void verifSubdivision(structSubdivision Subdivision){
+		int i, n = Subdivision.nombre;
+		for(i=0; i<n; i++){
+				printf("\nintervalle #%d", i+1);
+				printf("\ndebut = %lf", Subdivision.tabIntervalle[i].debut);
+				printf("\nfin = %lf", Subdivision.tabIntervalle[i].fin);
+		}
+};
 
 int main(){
-    
-		struct structQuadrature pQuadrature;
-              
-        //initialisation des tableaux avec la taille de n
-    
-        LireQuadrature(&pQuadrature); 
-        
-        printf("X = ");
-		show_array(pQuadrature.tabZeta, pQuadrature.taille);
-		printf("\n\n");
-		printf("Y = ");
-		show_array(pQuadrature.tabOmega, pQuadrature.taille);
-           
 		printf("\nVerification de Subdivision\n");
-		struct structSubdivision Subdivision;
-		struct structIntervalle Intervalle;
+		structSubdivision Subdivision;
+		structIntervalle Intervalle;
 
-		int i, n=5;
+		int i, n=60;
 
 		Intervalle.debut = 0;
 		Intervalle.fin =5;
 
 		CalculerSubdivisionReguliere(n, Intervalle, &Subdivision);
 
-		for(i=0; i<n; i++){
-				printf("\nintervalle #%d", i+1);
-				printf("\ndebut = %lf", Subdivision.tabIntervalle[i].debut);
-				printf("\nfin = %lf", Subdivision.tabIntervalle[i].fin);
-		
-		}
+		verifSubdivision(Subdivision);
 
+    	//Ahora verificamos la quadrature
+		structQuadrature Quadrature;
+
+        LireQuadrature(&Quadrature); 
+
+        printf("\n\nX = ");
+		show_array(Quadrature.tabZeta, Quadrature.taille);
+		printf("\n\n");
+		printf("Y = ");
+		show_array(Quadrature.tabOmega, Quadrature.taille);
+           
+		structEchantillonage_fonction matriz = echantillonage_fonction(Subdivision, Quadrature);
 
 		return 0;
 }
