@@ -98,9 +98,6 @@ void CalculerSubdivisionReguliere(int n,structIntervalle Intervalle,structSubdiv
 		pSubdivision->tabIntervalle[i].fin = pSubdivision->tabIntervalle[i].debut + (double)(h);
 		 }
 
-}
-
-
 /* PROPOSITIONS DE FONCTIONS :
 void CalculerSubdivisionReguliere(int n, structIntervalle Intervalle, structSubdivision* pSubdivision);
 
@@ -113,7 +110,7 @@ double CalculIntegrale(structEchantillonnage_fonction Echantillonnage_fonction);
 
 /* FONCTIONS DEJA CODEES DANS LA LIBRAIRIE */
 void show_array(double *array, int n);
-void LireQuadrature(structQuadrature* pQuadrature);
+void LireQuadrature(struct structQuadrature* pQuadrature);
 double CalculFonction(double x);
 //void AffichageGnuplot(structEchantillonnage_fonction Echantillonnage_fonction);
 void SauvegardeCourbe(char * nom_fichier, double * Abscisses, double * Ordonnees, int n);
